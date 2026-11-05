@@ -409,3 +409,14 @@ body{background:radial-gradient(ellipse at 78% -15%,#211b4a 0%,transparent 40%),
   background:linear-gradient(145deg,rgba(24,31,49,.76),rgba(13,19,31,.66)) !important;
   border-color:rgba(143,243,220,.32)!important;
 }
+
+
+/* Background tuned to the reference dashboard */
+.main {
+  background:
+    radial-gradient(ellipse at 28% 26%, rgba(100, 64, 190, .34) 0%, transparent 44%),
+    radial-gradient(ellipse at 84% 12%, rgba(42, 117, 164, .27) 0%, transparent 40%),
+    radial-gradient(ellipse at 67% 77%, rgba(81, 49, 150, .2) 0%, transparent 48%),
+    radial-gradient(ellipse at 8% 88%, rgba(21, 99, 119, .2) 0%, transparent 42%),
+    #080a12 !important;
+}

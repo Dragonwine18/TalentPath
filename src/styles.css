@@ -420,3 +420,14 @@ body{background:radial-gradient(ellipse at 78% -15%,#211b4a 0%,transparent 40%),
     radial-gradient(ellipse at 8% 88%, rgba(21, 99, 119, .2) 0%, transparent 42%),
     #080a12 !important;
 }
+
+
+/* Stronger reference-inspired ambient background */
+.main {
+  background:
+    radial-gradient(ellipse 88% 66% at 68% 44%, rgba(112, 72, 220, .82) 0%, transparent 68%),
+    radial-gradient(ellipse 78% 78% at 92% 8%, rgba(36, 151, 225, .62) 0%, transparent 64%),
+    radial-gradient(ellipse 70% 74% at 4% 85%, rgba(0, 194, 207, .48) 0%, transparent 63%),
+    radial-gradient(ellipse 60% 60% at 46% 12%, rgba(115, 124, 255, .4) 0%, transparent 65%),
+    linear-gradient(128deg, #0b1028 0%, #211548 47%, #082536 100%) !important;
+}

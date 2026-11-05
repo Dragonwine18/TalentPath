@@ -74,6 +74,7 @@ function App() {
     setRoleTransition(nextRole);
     setRole(nextRole);
     setPage("Overview");
+    window.scrollTo({ top: 0, behavior: "smooth" });
     window.setTimeout(() => setRoleTransition(""), 1150);
   };
   const challengeList = useMemo(() => challengeSeed.filter(c => (category === "All areas" || c.area === category) && `${c.title} ${c.area} ${c.kind} ${c.detail}`.toLowerCase().includes(query.toLowerCase())), [category, query]);
@@ -158,6 +159,7 @@ function App() {
     setModuleTransition(item);
     setPage(item);
     setAssessment(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
     window.setTimeout(() => setModuleTransition(""), 980);
   }
   function completeChallenge(id) { if (!completed.includes(id)) { setCompleted([...completed, id]); setStartedChallenges(prev=>prev.filter(x=>x!==id)); notify("Challenge completed! XP added to your demo profile."); } else notify("Already completed in this demo."); }

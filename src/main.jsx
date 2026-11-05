@@ -33,7 +33,74 @@ const challengeSeed = [
 
 function Icon({ children }) { return <span className="icon" aria-hidden="true">{children}</span>; }
 function Avatar({ person, small = false }) { return <div className={`avatar ${person.color || "lilac"} ${small ? "small" : ""}`}>{person.initials || person.name.split(" ").map(x=>x[0]).slice(0,2).join("")}</div>; }
+
+function TalentPathIntro({ onFinish }) {
+  const [progress, setProgress] = useState(0);
+  const [leaving, setLeaving] = useState(false);
+  const finishRef = useRef(false);
+
+  const finish = () => {
+    if (finishRef.current) return;
+    finishRef.current = true;
+    setLeaving(true);
+    window.setTimeout(onFinish, 680);
+  };
+
+  useEffect(() => {
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now) => {
+      const ratio = Math.min(1, (now - start) / 2550);
+      // Ease the progress forward, then complete before the reveal.
+      setProgress(Math.round(100 * (1 - Math.pow(1 - ratio, 1.65))));
+      if (ratio < 1 && !finishRef.current) raf = requestAnimationFrame(tick);
+      else if (!finishRef.current) window.setTimeout(finish, 240);
+    };
+    raf = requestAnimationFrame(tick);
+    const safety = window.setTimeout(finish, 3900);
+    return () => { cancelAnimationFrame(raf); clearTimeout(safety); };
+  }, []);
+
+  return <div className={`talent-intro ${leaving ? "is-leaving" : ""}`} role="status" aria-label="Loading TalentPath">
+    <div className="intro-corner corner-tl"/><div className="intro-corner corner-tr"/>
+    <div className="intro-corner corner-bl"/><div className="intro-corner corner-br"/>
+    <div className="intro-orbit orbit-outer"/><div className="intro-orbit orbit-inner"/>
+    <div className="intro-particle-field" aria-hidden="true">
+      {Array.from({length: 90}, (_, i) => <i key={i} style={{
+        "--x": `${(i * 37) % 100}%`,
+        "--y": `${(i * 19 + (i % 7) * 11) % 100}%`,
+        "--delay": `${(i % 17) * -0.13}s`,
+        "--size": `${1 + (i % 3) * 0.55}px`,
+        "--drift": `${(i % 9) - 4}vw`
+      }}/>)}
+    </div>
+    <button className="intro-skip" onClick={finish} aria-label="Skip intro">SKIP INTRO <span>↗</span></button>
+    <div className="intro-content">
+      <div className="intro-emblem">
+        <span className="intro-orbit-streak"/>
+        <div className="intro-monogram"><span>T</span><span>P</span></div>
+        <b className="intro-star">✦</b>
+      </div>
+      <div className="intro-wordmark">Talent<span>Path</span></div>
+      <div className="intro-tagline">DISCOVER <b>·</b> TRAIN <b>·</b> GROW <b>·</b> PERFORM</div>
+      <div className="intro-loading">
+        <div className="intro-loading-label"><span>INITIALIZING EXPERIENCE</span><b>{String(progress).padStart(2, "0")}%</b></div>
+        <div className="intro-track"><span style={{width: `${progress}%`}}/><i style={{left: `${progress}%`}}/></div>
+      </div>
+    </div>
+    <div className="intro-bottom-note">A SPACE TO FIND YOUR NEXT LEVEL <span>•</span> TALENTPATH</div>
+  </div>;
+}
+
+
 function App() {
+  const [showIntro, setShowIntro] = useState(() => {
+    try { return !window.sessionStorage.getItem("talentpath-intro-seen"); } catch { return true; }
+  });
+  const finishIntro = () => {
+    try { window.sessionStorage.setItem("talentpath-intro-seen", "1"); } catch {}
+    setShowIntro(false);
+  };
   const initialRoute = (() => { try { const p = new URLSearchParams(window.location.hash.slice(1)); return { role: p.get("role") === "Coach" ? "Coach" : "Student", page: p.get("page") || "Overview", track: p.get("track") || "Studies" }; } catch { return { role:"Student", page:"Overview" }; } })();
   const [role, setRole] = useState(initialRoute.role);
   const [roleTransition, setRoleTransition] = useState("");
@@ -174,6 +241,7 @@ function App() {
   const pageSub = page === "Overview" ? "Your next step is one small win away." : "A connected space to learn, practice, show progress, and find opportunities.";
 
   return <div className="app-shell">
+    {showIntro && <TalentPathIntro onFinish={finishIntro} />}
     {roleTransition && <div className={`role-transition-overlay ${roleTransition.toLowerCase()}`} aria-live="polite">
       <div className="role-transition-world">
         <div className="role-transition-ring ring-a"/><div className="role-transition-ring ring-b"/><div className="role-transition-ring ring-c"/>

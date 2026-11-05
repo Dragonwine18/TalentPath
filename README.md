@@ -1,23 +1,24 @@
-# TalentPath — full-featured website prototype
+# TalentPath — original interface with expanded feature prototype
 
-TalentPath connects learning, skill-building, sports talent development, and AI-assisted video review. This version intentionally has **no login page yet**, per the current brief. Student/Coach role switch and all workspaces use sample/demo data.
+TalentPath connects learning, skill-building, sports talent development, and AI-assisted video review. The original TalentPath dashboard layout, particle mark, 3D visual scene, typography, and existing dark cinematic visual system are retained unchanged. Student/Coach role switch and workspaces use sample/demo data.
 
 ## Included experience
 
 - **Education & learning:** learning-path cards, practice content, lesson/quiz style pathways
-- **Skill development / career readiness:** projects, skill portfolio, practical challenge cards
-- **Sports & talent discovery:** student and coach profiles, profile ratings, specialty tags, search, connect requests
-- **Education + skills:** integrated “learn → build” challenges
-- **Sports + AI:** video upload, browser preview, frame sampling, AI feedback report with strengths, improvement tips, practice drills, confidence label
-- Profiles / portfolios, profile editor, skills, evidence area
-- Challenges / assessments and completion / XP demo progress
-- Recommendations, opportunity listings, coach / learner discovery
-- Leaderboard, community feed, coach submission-review queue
-- Responsive layouts for desktop, tablet, mobile
+- **Skill development / career readiness:** projects, practical labs, and challenge cards
+- **Student tracks:** Studies, Athlete / Sports, Gaming, and Skill Development
+- **Student workspace:** Explore Learning, expanded subject and sport topics, Challenges, Practical Labs, AI Mentor, AI Studio, Opportunities, Talent Profiles, Talent Exchange, Live Sessions, Fast Thinking, Community, and separate student/athlete leaderboards
+- **Coach workspace:** Coach Overview, learner discovery filters, Athlete Review, AI Studio coach feedback and drill suggestions, Coach Sessions, Live Sessions, Talent Exchange, Community, and My Profile
+- **Sports discovery:** Cricket, football, basketball, tennis, badminton, athletics, swimming, esports, volleyball, hockey, and other options; filters for sport, skill, level, age, position, and location search
+- **Profile editing:** add/remove skills and interests; profile data is saved locally in this browser
+- **Challenge flow:** open details, start/resume, mark complete, and retain started/completed status locally
+- **Opportunities and connections:** visible demo request/interest status and an accepted demo athlete profile
+- **Video recording guidance:** camera preview plus on-screen framing, lighting, angle, and stability checklist
+- **Responsive layouts:** desktop, tablet, and mobile
 
 ### Prototype vs connected product
 
-This package includes functioning frontend interactions using local component state and sample content. The profile, challenge state, ratings, coach connections, posts, opportunities, and leaderboard are not yet persisted in a database. The AI Studio samples frames in the browser and calls `/.netlify/functions/analyze-video`; if the function or API key is not configured, it displays an explicitly marked demo report. No sample rating is a verified evaluation.
+This package includes functioning frontend interactions using local component state and sample content. Profile edits and challenge started/completed status are saved locally in this browser. Connection requests, opportunity interest, posts, session listings, and leaderboard data are demo content/state unless connected to an authenticated backend. Coach feedback notes are saved locally in this browser. The AI Studio samples frames in the browser and calls `/.netlify/functions/analyze-video`; if the function or API key is not configured, it displays an explicitly marked demo report. No sample rating is a verified evaluation.
 
 ## Run locally
 
@@ -164,3 +165,13 @@ TalentPath/
 └── supabase/
     └── schema.sql
 ```
+
+
+## Merge notes (November 2026)
+
+This build retains the previously supplied TalentPath UI and its expanded interactive pages. Selected persistence improvements from the companion repository are merged: connection requests, opportunity interest, and community messages are saved locally in the browser alongside profile and challenge state. The existing URL hash keeps role, track, and page on refresh.
+
+Validation performed for this package:
+- JSX syntax parsing of `src/main.jsx`, `src/TalentScene.jsx`, and `src/LogoParticles.jsx` passed.
+- ZIP integrity check passed after packaging.
+- A full Vite production build could not be run in the working environment because npm dependency installation timed out. Please run `npm install` then `npm run build` locally before deployment.

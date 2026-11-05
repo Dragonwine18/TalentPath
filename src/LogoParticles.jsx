@@ -15,9 +15,9 @@ export default function LogoParticles() {
     const mctx = mask.getContext("2d");
     mctx.clearRect(0, 0, w, h);
     mctx.fillStyle = "#fff";
-    mctx.font = "800 78px Manrope, Arial, sans-serif";
+    mctx.font = "800 104px Manrope, Arial, sans-serif";
     mctx.textAlign = "center"; mctx.textBaseline = "middle";
-    mctx.fillText("t/p", w / 2 + 1, h / 2 + 1);
+    mctx.fillText("tp", w / 2 + 1, h / 2 + 1);
     const pixels = mctx.getImageData(0, 0, w, h).data;
     const points = [];
     for (let y = 18; y < h - 18; y += 3) {
@@ -42,22 +42,17 @@ export default function LogoParticles() {
         ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI * 2); ctx.fill();
       });
       ctx.globalAlpha = 1;
-      if (Math.abs(target-scatter) > .003 || target > 0) raf = requestAnimationFrame(draw);
-      else { scatter = 0; raf = 0; }
+      raf = requestAnimationFrame(draw);
     };
-    const animate = () => { if (!raf) raf = requestAnimationFrame(draw); };
     const onScroll = () => {
       const delta = Math.abs(window.scrollY - lastScroll);
       lastScroll = window.scrollY;
       if (delta > 1) target = Math.min(1, target + Math.min(.22, delta / 90));
-      animate();
       clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => { target = 0; animate(); }, 180);
+      idleTimer = setTimeout(() => { target = 0; }, 180);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    ctx.clearRect(0, 0, 39, 39);
-    points.forEach(p=>{ctx.fillStyle="#fff";ctx.globalAlpha=.92;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});
-    ctx.globalAlpha=1;
+    draw();
     return () => { cancelAnimationFrame(raf); clearTimeout(idleTimer); window.removeEventListener("scroll", onScroll); };
   }, []);
 

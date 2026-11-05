@@ -83,9 +83,11 @@ body{background:radial-gradient(ellipse at 78% -15%,#211b4a 0%,transparent 40%),
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 70% 12%, #29204a7a 0%, transparent 42%),
-    radial-gradient(ellipse at 20% 85%, #102d3c4d 0%, transparent 45%),
-    #080a12 !important;
+    radial-gradient(ellipse 88% 66% at 68% 44%, rgba(94, 54, 190, .62) 0%, transparent 68%),
+    radial-gradient(ellipse 78% 78% at 92% 8%, rgba(29, 118, 186, .42) 0%, transparent 64%),
+    radial-gradient(ellipse 70% 74% at 4% 85%, rgba(0, 168, 184, .3) 0%, transparent 63%),
+    radial-gradient(ellipse 60% 60% at 46% 12%, rgba(83, 89, 203, .24) 0%, transparent 65%),
+    linear-gradient(128deg, #090d20 0%, #13102d 47%, #071827 100%) !important;
   isolation: isolate;
 }
 .talent-scene-layer {
@@ -410,24 +412,70 @@ body{background:radial-gradient(ellipse at 78% -15%,#211b4a 0%,transparent 40%),
   border-color:rgba(143,243,220,.32)!important;
 }
 
-
-/* Background tuned to the reference dashboard */
-.main {
-  background:
-    radial-gradient(ellipse at 28% 26%, rgba(100, 64, 190, .34) 0%, transparent 44%),
-    radial-gradient(ellipse at 84% 12%, rgba(42, 117, 164, .27) 0%, transparent 40%),
-    radial-gradient(ellipse at 67% 77%, rgba(81, 49, 150, .2) 0%, transparent 48%),
-    radial-gradient(ellipse at 8% 88%, rgba(21, 99, 119, .2) 0%, transparent 42%),
-    #080a12 !important;
-}
-
-
-/* Stronger reference-inspired ambient background */
-.main {
-  background:
-    radial-gradient(ellipse 88% 66% at 68% 44%, rgba(112, 72, 220, .82) 0%, transparent 68%),
-    radial-gradient(ellipse 78% 78% at 92% 8%, rgba(36, 151, 225, .62) 0%, transparent 64%),
-    radial-gradient(ellipse 70% 74% at 4% 85%, rgba(0, 194, 207, .48) 0%, transparent 63%),
-    radial-gradient(ellipse 60% 60% at 46% 12%, rgba(115, 124, 255, .4) 0%, transparent 65%),
-    linear-gradient(128deg, #0b1028 0%, #211548 47%, #082536 100%) !important;
-}
+/* Clear role, track, profile, and interaction states while preserving the existing visual system. */
+.main { overflow:visible!important; }
+.page-wrap { min-height:calc(100vh - 130px); padding-bottom:48px!important; }
+.brand strong { letter-spacing:-.9px; }
+.brand-slash { color:#63e4dc; font-weight:800; padding:0 1px; text-shadow:0 0 16px #61e8ff70; }
+.brand small { letter-spacing:1px; }
+.track-picker { margin:0 4px 20px; padding:12px 10px; border:1px solid #2d3147; border-radius:12px; background:linear-gradient(145deg,#15182a,#0d111b); }
+.track-picker>span { display:block; margin:0 4px 8px; color:#8189a6; font-size:8px; font-weight:800; letter-spacing:1.3px; }
+.track-picker select { width:100%; color:#e8eaff; background:#0a0d17; border:1px solid #30354d; border-radius:8px; padding:8px; font-size:10px; }
+.community-nav { position:relative; background:linear-gradient(100deg,#1e3137,#161e2b)!important; border:1px solid #315253; color:#a1efe0!important; font-weight:700; }
+.community-label { margin-left:auto; color:#74ead0; font-size:7px; letter-spacing:1px; font-weight:900; }
+.search-wrap { position:relative; z-index:12; }
+.search-results,.notification-popover { position:absolute; z-index:50; top:calc(100% + 10px); right:0; width:min(340px,86vw); border:1px solid #343951; border-radius:13px; padding:9px; background:rgba(13,16,28,.98); box-shadow:0 18px 55px #0008; backdrop-filter:blur(20px); }
+.search-results button,.notification-popover button { width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-align:left; color:#eef0ff; padding:11px; border-radius:9px; }
+.search-results button:hover,.notification-popover button:hover { background:#222039; }
+.search-results small,.notification-popover small { color:#999fba; font-size:9px; }
+.search-results>span { display:block; color:#aeb3ca; font-size:10px; padding:12px; }
+.notification-popover { top:66px; right:52px; }
+.notification-popover>strong { display:block; padding:8px 10px; color:#bcaaff; font:800 12px Manrope; }
+.discovery-filters { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.discovery-filters .select { background:#111624; color:#dfe3ff; border-color:#30364d; }
+.connection-status { border-radius:6px; padding:5px 7px; font-size:8px; font-weight:800; letter-spacing:.3px; }
+.connection-status.accepted { color:#82ebc4; background:#17372f; }
+.connection-status.requested { color:#d6c3ff; background:#2a2146; }
+.requested-btn { background:#28223d; color:#c8b8ff; border:1px solid #594985; padding:11px 15px; border-radius:9px; font-size:11px; font-weight:700; }
+.coach-dashboard { display:grid; gap:18px; }
+.coach-hero { background:radial-gradient(ellipse at 78% 54%,#17617380 0%,transparent 37%),linear-gradient(118deg,#101a28,#17182e 54%,#11212d)!important; border-color:#386579!important; }
+.coach-hero .ring-inner { background:radial-gradient(circle at 30% 20%,#b9fff5,#328ca8); }
+.coach-queue-item { width:100%; text-align:left; }
+.coach-session { display:grid; gap:5px; padding:13px 0; border-bottom:1px solid #282e42; }
+.coach-session b { color:#e9ebff; font-size:11px; }
+.coach-session span { color:#949db7; font-size:10px; }
+.coach-stats { margin-top:0!important; }
+.coach-heading .eyebrow { color:#7edcd6; }
+.profile-settings-page { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(230px,.7fr); gap:16px; align-items:start; }
+.profile-settings-card,.profile-side-note>.panel { background:linear-gradient(145deg,#121624,#0d111d)!important; border:1px solid #292f45!important; border-radius:16px!important; padding:22px!important; color:#e9ecff; }
+.profile-settings-head { display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-bottom:20px; border-bottom:1px solid #272d41; }
+.profile-settings-head>div:nth-child(2) { flex:1; min-width:180px; }
+.profile-settings-head h2 { margin:5px 0; color:#f4f4ff; font:800 22px Manrope; }
+.profile-settings-head p,.profile-settings-head small,.profile-settings-about p { margin:4px 0; color:#9ca4bf; font-size:10px; line-height:1.7; }
+.profile-settings-about { padding:18px 0; border-bottom:1px solid #272d41; }
+.profile-settings-about h3,.profile-side-note h3 { margin:0 0 8px; color:#e8eaff; font:800 13px Manrope; }
+.profile-edit-form { gap:13px; background:#0d121f; border:1px solid #272d41; border-radius:13px; padding:17px; margin-top:16px; }
+.profile-edit-form label { color:#dce0f5; font-size:10px; }
+.tag-editor { display:flex; align-items:end; gap:8px; flex-wrap:wrap; padding:12px; border:1px solid #292f44; border-radius:10px; background:#111624; }
+.tag-editor>label { flex:1; min-width:180px; }
+.tag-editor .tag-list { width:100%; }
+.editable-tag { background:#25203d!important; color:#c9bcff!important; border:1px solid #51477a!important; border-radius:7px; padding:6px 8px; font-size:9px; }
+.profile-editor-modal { width:min(560px,100%); max-height:85vh; overflow:auto; }
+.profile-editor-modal h2 { color:#f4f4ff; margin:6px 0 12px; }
+.profile-editor-modal .profile-edit-form { margin:0; border:0; padding:0; background:transparent; }
+.challenge-progress { height:7px; margin:12px 0; border-radius:8px; background:#292e43; overflow:hidden; }
+.challenge-progress>span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#9177ff,#57ded7); transition:width .35s ease; }
+.challenge-modal .primary-btn { width:100%; }
+.record-actions { display:flex; gap:9px; flex-wrap:wrap; justify-content:center; }
+.guided-camera { position:relative; width:100%; }
+.guided-camera .video-preview { display:block; }
+.camera-guides { position:absolute; z-index:2; top:12px; left:12px; display:grid; gap:6px; padding:11px; border:1px solid #ffffff30; border-radius:10px; color:#f3f5ff; background:#070a12c9; backdrop-filter:blur(12px); text-align:left; font-size:9px; }
+.camera-guides b { color:#a8fff0; margin-bottom:2px; font-size:10px; }
+.framing-guide { position:absolute; inset:12% 28%; border:1px dashed #a8fff0b8; border-radius:40%; pointer-events:none; }
+.video-file-row>div { display:flex; gap:8px; flex-wrap:wrap; }
+.video-file-row .done-btn { background:#612e44; color:#ffe7ee; }
+.profile-settings-page .profile-side-note { display:grid; gap:14px; }
+.community-feed { scroll-margin-top:20px; }
+#nl-badge-frame { display:none!important; }
+@media(max-width:900px) { .discovery-filters { width:100%; } .profile-settings-page { grid-template-columns:1fr; } .notification-popover { right:44px; } }
+@media(max-width:600px) { .track-picker { padding:9px; } .coach-hero .hero-art { opacity:.35; } .notification-popover { right:8px; } .camera-guides { top:6px; left:6px; padding:7px; font-size:8px; } .camera-guides span:nth-last-child(-n+2) { display:none; } .framing-guide { inset:17% 20%; } .video-file-row>div { flex-direction:column; } }

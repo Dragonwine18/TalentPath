@@ -44,8 +44,10 @@ function CoreObject() {
     <pointLight color="#9b79ed" intensity={17} distance={7} /><pointLight position={[2, -1, 1]} color="#75f0d5" intensity={11} distance={6} />
   </group>;
 }
-export default function TalentScene() {
+function TalentScene() {
   return <Canvas camera={{ position: [0, 0, 9], fov: 48 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}>
     <ambientLight intensity={0.82} /><ParticleField /><CoreObject />
   </Canvas>;
 }
+
+export default React.memo(TalentScene);
